@@ -14,22 +14,28 @@ namespace Valve.VR.InteractionSystem
 	public class BodyCollider : MonoBehaviour
 	{
 		public Transform head;
+		public Transform feet;
 
 		private CapsuleCollider capsuleCollider;
 
 		//-------------------------------------------------
 		void Awake()
 		{
-			capsuleCollider = GetComponent<CapsuleCollider>();
+			//capsuleCollider = GetComponent<CapsuleCollider>();
 		}
 
 
 		//-------------------------------------------------
 		void FixedUpdate()
 		{
-			float distanceFromFloor = Vector3.Dot( head.localPosition, Vector3.up );
+			/*float distanceFromFloor = Vector3.Dot( head.localPosition, Vector3.up );
 			capsuleCollider.height = Mathf.Max( capsuleCollider.radius, distanceFromFloor );
-			transform.localPosition = head.localPosition - 0.5f * distanceFromFloor * Vector3.up;
+			transform.localPosition = head.localPosition - 0.5f * distanceFromFloor * Vector3.up;*/
 		}
-	}
+
+        private void Update()
+        {
+			gameObject.transform.position = new Vector3(head.position.x, feet.position.y, head.position.z);
+        }
+    }
 }
